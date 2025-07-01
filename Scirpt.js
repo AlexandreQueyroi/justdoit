@@ -37,7 +37,6 @@ function renderTaskList() {
 
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
-        li.
 
     });
 }
