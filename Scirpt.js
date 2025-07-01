@@ -8,37 +8,49 @@ let tasks = [];
 addTaskBtn.addEventListener('click', addTask);
 
 function addTask() {
-  const taskText = taskName.value.trim();
-  const taskPriority = taskPriority.value;
+    const taskText = taskName.value.trim();
+    const priority = taskPriority.value;
 
-  if (taskText !== "") {
-    const task = {
-      name: taskText,
-      priority: taskPriority,
-      status: "TO DO"
-    };
 
-    tasks.push(task);
-    saveTasks();
-    renderTasks();
+    if (taskText !== "") {
+        const task = {
+        name: taskText,
+        priority: priority,
+        status: "TO DO"
+        };
 
-    taskName.value = "";
-    taskPriority.value = "LOW";
-  } else {
-    alert("Veuillez saisir un nom de tâche.");
-  }
+        tasks.push(task);
+        saveTasks();
+        renderTasks();
+
+        taskName.value = "";
+        taskPriority.value = "LOW";
+    } else {
+        alert("Veuillez saisir un nom de tâche.");
+    }
 }
 
-function renderTaskList() {
-    Document.getElementById("todo-list").innerHTML = "";
-    Document.getElementById("inprogress-list").innerHTML = "";
-    Document.getElementById("inreview-list").innerHTML = "";
-    Document.getElementById("done-list").innerHTML = "";
+function renderTasks() {
+    document.getElementById("todo-list").innerHTML = "";
+    document.getElementById("inprogress-list").innerHTML = "";
+    document.getElementById("inreview-list").innerHTML = "";
+    document.getElementById("done-list").innerHTML = "";
 
     tasks.forEach((task, index) => {
         const li = document.createElement("li");
-        li.
-
+        li.style.borderColor = getprioritycolor(task.priority);
+        li.innerHTML = `
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <input type="checkbox" ${task.status === "DONE" ? "checked" : ""} data-index="${index}" class="complete-checkbox me-2">
+                <span>${task.name}</span><br>
+                <small class="text-muted">Priorité : ${task.priority}</small>
+              </div>
+              <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">Delete</button>
+            </div>
+      `
+        const targetListId = getListId(task.status);
+        document.getElementById(targetListId).appendChild(li);
     });
 }
 
@@ -51,6 +63,16 @@ function getprioritycolor(priority) {
     }
 }
 
+function getListId(status) {
+  switch (status) {
+    case "TO DO": return "todo-list";
+    case "IN PROGRESS": return "inprogress-list";
+    case "IN REVIEW": return "inreview-list";
+    case "DONE": return "done-list";
+    default: return "todo-list";
+  }
+}
+
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
@@ -59,7 +81,7 @@ function loadTasks() {
     const storedTasks = localStorage.getItem('tasks');
     if (storedTasks) {
         tasks = JSON.parse(storedTasks);
-        renderTaskList();
+        renderTasks();
     }
 }
 
