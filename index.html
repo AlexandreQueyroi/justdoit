@@ -17,6 +17,27 @@
     </nav>
   </header>
   <main>
+  <header class="bg-primary">
+    <div class="container-fluid">
+      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+      <h1 class="mb-3 mb-md-0">Board</h1>
+        <div class="d-flex flex-wrap gap-2 align-items-center">
+          <div class="input-group">
+            <input class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
+            <button class="btn btn-success" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
+          </div>
+          <button class="btn btn-light">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+          <button class="btn btn-light d-flex align-items-center">
+            Quick Filters <i class="fas fa-chevron-down ms-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
   <div id="task-form">
     <input type="text" id="task-name" placeholder="Nom de la tâche" />
     <select id="task-priority">
@@ -30,13 +51,22 @@
   <div class="container d-flex justify-content-center align-items-center">
     <div class="col-12 d-flex justify-content-center flex-wrap gap-3">
 
-        <div class="card p-3">TO DO</div>
-
-        <div class="card p-3">IN PROGRESS</div>
-
-        <div class="card p-3">IN REVIEW</div>
-
-        <div class="card p-3">DONE</div>
+        <div class="card p-3">
+          <h5>TO DO</h5>
+          <ul id="todo-list"></ul>
+        </div>
+        <div class="card p-3">
+          <h5>IN PROGRESS</h5>
+          <ul id="inprogress-list"></ul>
+        </div>
+        <div class="card p-3">
+          <h5>IN REVIEW</h5>
+          <ul id="inreview-list"></ul>
+        </div>
+        <div class="card p-3">
+          <h5>DONE</h5>
+          <ul id="done-list"></ul>
+        </div>
     
     </div>
   </div>

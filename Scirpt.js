@@ -29,6 +29,28 @@ function addTask() {
   }
 }
 
+function renderTaskList() {
+    Document.getElementById("todo-list").innerHTML = "";
+    Document.getElementById("inprogress-list").innerHTML = "";
+    Document.getElementById("inreview-list").innerHTML = "";
+    Document.getElementById("done-list").innerHTML = "";
+
+    tasks.forEach((task, index) => {
+        const li = document.createElement("li");
+        li.
+
+    });
+}
+
+function getprioritycolor(priority) {
+    switch (priority){
+        case "HIGH": return "red";
+        case "MEDIUM": return "orange";
+        case "LOW": return "green";
+        default: return "gray";
+    }
+}
+
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
