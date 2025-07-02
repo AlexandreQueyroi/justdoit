@@ -1,5 +1,4 @@
 const taskName = document.getElementById('task-name');
-const taskList = document.getElementById('task-list');
 const taskPriority = document.getElementById("task-priority");
 const addTaskBtn = document.getElementById('add-task-btn');
 
@@ -46,11 +45,20 @@ function renderTasks() {
                 <span>${task.name}</span><br>
                 <small class="text-muted">Priorité : ${task.priority}</small>
               </div>
-              <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">Delete</button>
+              <button  class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">Delete</button>
             </div>
       `
         const targetListId = getListId(task.status);
         document.getElementById(targetListId).appendChild(li);
+    });
+    const deletebtn = document.querySelectorAll(".delete-btn");
+    deletebtn.forEach((button) => {
+        button.addEventListener("click",()=> {
+          const index = button.getAttribute("data-index");
+          tasks.splice(index, 1);
+          saveTasks();
+          renderTasks();
+        });
     });
 }
 
@@ -85,5 +93,6 @@ function loadTasks() {
     }
 }
 
-loadTasks();
-saveTasks();
+document.addEventListener("DOMContentLoaded", () => {
+  loadTasks();
+});
