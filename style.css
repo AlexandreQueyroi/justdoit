@@ -5,3 +5,122 @@
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 0.75rem;
 }
+
+.task-item {
+    cursor: move;
+    transition: all 0.2s ease;
+    user-select: none;
+    margin-bottom: 8px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.task-item.dragging {
+    opacity: 0.5;
+    background-color: #f8f9fa !important;
+}
+
+.drag-handle {
+    color: #6c757d;
+    cursor: move;
+    font-size: 1.2em;
+    padding: 0 5px;
+}
+
+.task-item:hover .drag-handle {
+    color: #495057;
+}
+
+#todo-list, #inprogress-list, #inreview-list, #done-list {
+    min-height: 50px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: background-color 0.2s ease;
+}
+
+#todo-list:empty, #inprogress-list:empty, #inreview-list:empty, #done-list:empty {
+    padding: 20px;
+    border: 2px dashed #dee2e6;
+}
+
+#todo-list.dragover, #inprogress-list.dragover, #inreview-list.dragover, #done-list.dragover {
+    background-color: #e9ecef;
+    border: 2px dashed #6c757d;
+}
+
+#trash-section {
+    transition: all 0.3s ease;
+}
+
+#trash-list li {
+    border-left: 4px solid;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+#trash-list li:hover {
+    background-color: #e9ecef;
+}
+
+.restore-btn:hover {
+    transform: scale(1.1);
+}
+
+.permanent-delete-btn:hover {
+    transform: scale(1.1);
+    background-color: #dc3545;
+    color: white;
+}
+
+.priority-context-menu {
+    display: none;
+    position: fixed;
+    background: white;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.priority-option {
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s ease;
+}
+
+.priority-option:hover {
+    background-color: #f8f9fa;
+}
+
+.priority-option.active {
+    background-color: #e9ecef;
+}
+
+.priority-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.priority-dot.high {
+    background-color: #dc3545;
+}
+
+.priority-dot.medium {
+    background-color: #ffc107;
+}
+
+.priority-dot.low {
+    background-color: #28a745;
+}
