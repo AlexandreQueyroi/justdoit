@@ -45,7 +45,10 @@ function renderTasks() {
                 <span>${task.name}</span><br>
                 <small class="text-muted">Priorité : ${task.priority}</small>
               </div>
-              <button  class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">Delete</button>
+              <div class="btn-group">
+                <button class="btn btn-sm btn-outline-primary edit-btn" data-index="${index}">✏️</button>
+                <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">🗑</button>
+              </div>
             </div>
       `
         const targetListId = getListId(task.status);
@@ -59,6 +62,18 @@ function renderTasks() {
           saveTasks();
           renderTasks();
         });
+    });
+    const modifybtn = document.querySelectorAll(".edit-btn");
+    modifybtn.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const index = btn.getAttribute("data-index");
+        const newName = prompt("Modifier le nom de la tâche :", tasks[index].name);
+        if (newName) {
+          tasks[index].name = newName.trim();
+          saveTasks();
+          renderTasks();
+        }
+      });
     });
 }
 
