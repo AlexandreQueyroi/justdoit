@@ -26,9 +26,20 @@
           <button class="btn btn-light">
             <i class="fas fa-trash-alt"></i>
           </button>
-          <button class="btn btn-light d-flex align-items-center">
-            Quick Filters <i class="fas fa-chevron-down ms-2"></i>
-          </button>
+          <select id="status-filter" class="form-select">
+            <option value="ALL">Tous les statuts</option>
+            <option value="TO DO">TO DO</option>
+            <option value="IN PROGRESS">IN PROGRESS</option>
+            <option value="IN REVIEW">IN REVIEW</option>
+            <option value="DONE">DONE</option>
+          </select>
+
+          <select id="priority-filter" class="form-select">
+            <option value="ALL">Toutes les priorités</option>
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+          </select>
         </div>
       </div>
     </div>

@@ -3,7 +3,11 @@ const taskPriority = document.getElementById("task-priority");
 const addTaskBtn = document.getElementById('add-task-btn');
 
 let tasks = [];
+const statusFilter = document.getElementById("status-filter");
+const priorityFilter = document.getElementById("priority-filter");
 
+statusFilter.addEventListener("change", renderTasks);
+priorityFilter.addEventListener("change", renderTasks);
 addTaskBtn.addEventListener('click', addTask);
 
 function addTask() {
@@ -35,24 +39,34 @@ function renderTasks() {
     document.getElementById("inreview-list").innerHTML = "";
     document.getElementById("done-list").innerHTML = "";
 
+
+    const selectedStatus = statusFilter ? statusFilter.value : "ALL";
+    const selectedPriority = priorityFilter ? priorityFilter.value : "ALL";
+
     tasks.forEach((task, index) => {
-        const li = document.createElement("li");
-        li.style.borderColor = getprioritycolor(task.priority);
-        li.innerHTML = `
-            <div class="d-flex justify-content-center align-items-center">
-              <div>
-                <input type="checkbox" ${task.status === "DONE" ? "checked" : ""} data-index="${index}" class="complete-checkbox me-2">
-                <span>${task.name}</span><br>
-                <small class="text-muted">Priorité : ${task.priority}</small>
-              </div>
-              <div class="btn-group">
-                <button class="btn btn-sm btn-outline-primary edit-btn" data-index="${index}">✏️</button>
-                <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">🗑</button>
-              </div>
-            </div>
-      `
-        const targetListId = getListId(task.status);
-        document.getElementById(targetListId).appendChild(li);
+        const matchesStatus = selectedStatus === "ALL" || task.status === selectedStatus;
+        const matchesPriority = selectedPriority === "ALL" || task.priority === selectedPriority;
+
+        if (matchesStatus && matchesPriority) {
+            const li = document.createElement("li");
+            li.style.borderColor = getprioritycolor(task.priority);
+            li.innerHTML = `
+                <div class="d-flex justify-content-center align-items-center">
+                    <div>
+                        <input type="checkbox" ${task.status === "DONE" ? "checked" : ""} data-index="${index}" class="complete-checkbox me-2">
+                        <span>${task.name}</span><br>
+                        <small class="text-muted">Priorité : ${task.priority}</small>
+                    </div>
+                    <div class="btn-group">
+                        <button class="btn btn-sm btn-outline-primary edit-btn" data-index="${index}">✏️</button>
+                        <button class="btn btn-sm btn-outline-danger delete-btn" data-index="${index}">🗑</button>
+                    </div>
+                </div>
+            `;
+
+            const targetListId = getListId(task.status);
+            document.getElementById(targetListId).appendChild(li);
+        }
     });
     const deletebtn = document.querySelectorAll(".delete-btn");
     deletebtn.forEach((button) => {
