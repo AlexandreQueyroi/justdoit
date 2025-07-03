@@ -124,3 +124,95 @@
 .priority-dot.low {
     background-color: #28a745;
 }
+
+/* Styles généraux */
+body {
+    background-color: #f5f7fa;
+    min-height: 100vh;
+    padding: 20px 0;
+}
+
+header {
+    padding: 0;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    color: white;
+    margin: 0;
+    font-size: 1.8rem;
+    white-space: nowrap;
+}
+
+/* Style du formulaire d'ajout de tâche dans le header */
+#task-form {
+    flex: 1;
+    max-width: 600px;
+}
+
+#task-form .form-control,
+#task-form .form-select,
+#task-form .btn {
+    border: none;
+    height: 38px;
+}
+
+#task-form .form-control {
+    min-width: 200px;
+}
+
+#task-form .form-select {
+    width: 120px;
+}
+
+#task-form .btn-light {
+    background-color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+}
+
+#task-form .btn-light:hover {
+    background-color: white;
+}
+
+/* Style des filtres */
+.form-select {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-select:hover {
+    background-color: white;
+}
+
+/* Style des cartes */
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Style de la barre de recherche */
+.input-group {
+    max-width: 300px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 1rem;
+    }
+    
+    #task-form {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .form-select, .input-group {
+        width: 100%;
+        max-width: 100%;
+    }
+}

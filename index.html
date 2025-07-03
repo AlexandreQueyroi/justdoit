@@ -13,39 +13,58 @@
   
   <main>
   <header class="bg-primary">
-    <div class="container-fluid">
-      <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
-      <h1 class="mb-3 mb-md-0">Board</h1>
-        <div class="d-flex flex-wrap gap-2 align-items-center">
-          <div class="input-group">
-            <input class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
-            <button class="btn btn-success" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
+    <div class="container-fluid py-3">
+      <div class="row align-items-center">
+        <!-- Partie gauche : Titre et ajout de tâche -->
+        <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+          <div class="d-flex align-items-center gap-3">
+            <h1 class="mb-0">Board</h1>
+            <div id="task-form" class="d-flex gap-2">
+              <input type="text" id="task-name" class="form-control" placeholder="Nom de la tâche" />
+              <select id="task-priority" class="form-select">
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+              </select>
+              <button id="add-task-btn" class="btn btn-light">
+                <i class="fas fa-plus"></i> Ajouter
+              </button>
+            </div>
           </div>
-          <button class="btn btn-light" title="Afficher/Masquer la corbeille">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-          <select id="status-filter" class="form-select">
-            <option value="ALL">Tous les statuts</option>
-            <option value="TO DO">TO DO</option>
-            <option value="IN PROGRESS">IN PROGRESS</option>
-            <option value="IN REVIEW">IN REVIEW</option>
-            <option value="DONE">DONE</option>
-          </select>
-
-          <select id="priority-filter" class="form-select">
-            <option value="ALL">Toutes les priorités</option>
-            <option value="LOW">Low</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="HIGH">High</option>
-          </select>
+        </div>
+        
+        <!-- Partie droite : Recherche et filtres -->
+        <div class="col-12 col-lg-6">
+          <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+            <div class="input-group" style="max-width: 250px;">
+              <input class="form-control" type="search" placeholder="Rechercher..." aria-label="Search">
+              <button class="btn btn-light" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <button class="btn btn-light" title="Afficher/Masquer la corbeille">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <select id="status-filter" class="form-select" style="max-width: 150px;">
+              <option value="ALL">Tous les statuts</option>
+              <option value="TO DO">TO DO</option>
+              <option value="IN PROGRESS">IN PROGRESS</option>
+              <option value="IN REVIEW">IN REVIEW</option>
+              <option value="DONE">DONE</option>
+            </select>
+            <select id="priority-filter" class="form-select" style="max-width: 150px;">
+              <option value="ALL">Toutes les priorités</option>
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
   </header>
-<div class="d-flex justify-content-center flex-wrap gap-3">
 
+<div class="d-flex justify-content-center flex-wrap gap-3">
     <div class="col-md-2">
       <div class="card p-3">
         <div class="card-header text-primary">TO DO</div>
@@ -54,7 +73,6 @@
         </ul>
       </div>
     </div>
-
 
     <div class="col-md-2">
       <div class="card p-3">
@@ -99,17 +117,6 @@
     </div>
   </div>
 
-<div id="task-form">
-  <input type="text" id="task-name" placeholder="Nom de la tâche" />
-  <select id="task-priority">
-    <option value="LOW">Low</option>
-    <option value="MEDIUM">Medium</option>
-    <option value="HIGH">High</option>
-  </select>
-  <button id="add-task-btn">Ajouter</button>
-</div>
-
-
-  <script src="/Scirpt.js"></script>
+  <script src="/script.js"></script>
 </body>
 </html>
